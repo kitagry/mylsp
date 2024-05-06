@@ -21,6 +21,8 @@ func (h *handler) handleTextDocumentDidOpen(
 
 	h.cache.Set(params.TextDocument.URI, params.TextDocument)
 
+	h.diagnosticRequest <- params.TextDocument.URI
+
 	return nil, nil
 }
 
@@ -42,6 +44,8 @@ func (h *handler) handleTextDocumentDidChange(
 	file.Text = params.ContentChanges[0].Text
 	file.Version = params.TextDocument.Version
 	h.cache.Set(params.TextDocument.URI, file)
+
+	h.diagnosticRequest <- params.TextDocument.URI
 
 	return nil, nil
 }
