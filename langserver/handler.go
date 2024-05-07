@@ -47,6 +47,8 @@ func (h *handler) handle(
 		return h.handleTextDocumentDidClose(ctx, conn, req)
 	case "textDocument/disSave":
 		return h.handleTextDocumentDidSave(ctx, conn, req)
+	case "textDocument/completion":
+		return h.handleTextDocumentCompletion(ctx, conn, req)
 	}
 	return nil, errors.New("not implemented")
 }

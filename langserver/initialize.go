@@ -21,6 +21,9 @@ func (h *handler) handleInitialize(
 			TextDocumentSync: &lsp.TextDocumentSyncOptionsOrKind{
 				Kind: toPtr(lsp.TDSKFull),
 			},
+			CompletionProvider: &lsp.CompletionOptions{
+				TriggerCharacters: []string{"."},
+			},
 		},
 	}, nil
 }
